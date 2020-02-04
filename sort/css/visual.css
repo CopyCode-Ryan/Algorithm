@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.VisualMainPage #mainContent {
+    background: #FFFFFF;
+}
+
+.VisualMainPage #container {
+    background: #FFFFFF;
+    text-align: left;
+}
+
+.VisualMainPage #header {
+    background: #006633;
+    color: #FFCC33;
+    padding: 0 10px 0 20px;
+}
+
+.VisualMainPage #algoControlSection
+{
+    background: #DDEEDD; 
+    color:#000000; 
+}
+.VisualMainPage #AlgorithmSpecificControls {
+    background: #DDEEDD;
+    width: 100%;
+    padding: 10px 0;
+}
+
+#AlgorithmSpecificControls .select {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    vertical-align: middle;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    color: #555;
+    border: 1px solid #aaa;
+    text-shadow: none;
+    border-radius: 4px;	
+    transition: box-shadow 0.25s ease;
+    z-index: 2;
+}
+
+.select:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.select:before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-top-color: #ccc;
+    top:12px;
+    right:10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.select select {
+    cursor: pointer;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background:transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.VisualMainPage #footer {
+    padding: 0 10px;
+    background: #006633; 
+    color:#ffcc33;
+}
+
+.VisualMainPage #footer p {
+    text-align: center;
+    margin: 0; 
+    padding: 10px 0; 
+}
+
+#AlgorithmSpecificControls .btn {
+    margin: 0 10px;
+    min-width: 80px;
+    padding: 5px;
+    border: 2px solid transparent!important;
+    border-radius: 4px;
+}
+
+#AlgorithmSpecificControls .btn:hover {
+    opacity: 0.8;
+}
+
+#AlgorithmSpecificControls .btn-primary {
+    margin: 0 10px;
+    padding: 5px;
+    border: 2px solid transparent!important;
+    color: #FFFFFF;
+    background: #00a2ff;
+}
+
+#AlgorithmSpecificControls .btn-primary:hover {
+    opacity: 0.5;
+    text-decoration: none;
+    outline: none;
+}
