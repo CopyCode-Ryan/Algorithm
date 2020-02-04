@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf8" />
+<link rel="stylesheet" href="css/visual.css" />
+<style>
+    canvas {
+        display: block;
+        min-width: 1000px;
+        min-height: 500px;
+    }
+
+    #cvs {
+        background: #FFF;
+    }
+</style>
+
+<body onload="init();" class="VisualMainPage">
+    <div id="container">
+        <div id="header">
+            <h1>排序算法</h1>
+        </div>
+        <div id="mainContent">
+            <div id="algoControlSection">
+                <div id="AlgorithmSpecificControls">
+                    <button id="random" class="btn">随机生成数据</button>
+                    <div class="select">
+                        <select id="algroithm">
+                            <option value="1" selected>冒泡排序</option>
+                            <option value="2">选择排序</option>
+                        </select>
+                    </div>
+                    <button id="running" class="btn btn-primary">演示</button>
+                </div>
+            </div>
+            <canvas id="canvas" width="1000" height="500"></canvas>
+        </div>
+    </div>
+    <div id="footer">
+        <p> COPYRIGHT 2020 可视化算法网. ALL RIGHTS RESERVED.</p>
+    </div>
+</body>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript">
+    function init() {
+        InitCanvas();
+        random = document.getElementById('random');
+        random.addEventListener('click', (event) => {
+            clearAllTimeout();
+            refreshCanvas();
+        }, false);
+        running = document.getElementById('running');
+        algroithm = document.getElementById('algroithm');
+        algroithm.addEventListener('change', (event) => {
+            index = algroithm.selectedIndex;
+            val = algroithm.options[index].value;
+            clearAllTimeout();
+            refreshCanvas();
+        }, false);
+
+        running.addEventListener('click', (event) => {
+            index = algroithm.selectedIndex;
+            val = algroithm.options[index].value;
+            algroithm.setAttribute("disabled", true);
+            random.setAttribute("disabled", true);
+            running.setAttribute("disabled", true);
+            Sort(val, function () {
+                algroithm.removeAttribute("disabled");
+                random.removeAttribute("disabled");
+                running.removeAttribute("disabled");
+            });
+        }, false);
+    }
+</script>
+
+</html>
