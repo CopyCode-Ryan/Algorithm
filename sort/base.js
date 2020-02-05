@@ -44,9 +44,9 @@ function drawCanvas(arr, first, second) {
         var y = arr[i] * 10;
         if (ctx) {
             ctx.beginPath();
-            if (i == first )
+            if (i == first)
                 ctx.fillStyle = 'red';
-            else if( i == second)
+            else if (i == second)
                 ctx.fillStyle = 'red';
             else
                 ctx.fillStyle = 'orange';
@@ -68,11 +68,14 @@ function Sort(type, callback) {
         case 2:
             SelectionSort();
             break;
+        case 3:
+            insertSort();
+            break;
     }
     setTimeout(function () {
         finish(list);
         callback();
-     }, index * 100);
+    }, index * 100);
 }
 
 var index = 0;
@@ -102,14 +105,14 @@ function bubbleSwap(items, firstIndex, secondIndex, k) {
 
 function drawBubble(arr, firstIndex, secondIndex, k) {
     clearCanvas();
-    for(var i = 0; i < arr.length; i ++) {
+    for (var i = 0; i < arr.length; i++) {
         var x = 10 + 25 * i;
         var y = arr[i] * 10;
         if (ctx) {
             ctx.beginPath();
             if (i == firstIndex || i == secondIndex)
                 ctx.fillStyle = 'red';
-            else if(i >= arr.length - k) 
+            else if (i >= arr.length - k)
                 ctx.fillStyle = 'green';
             else
                 ctx.fillStyle = 'orange';
@@ -154,7 +157,7 @@ function selectionSwap(items, selectedIndex, otherIndex) {
 function SelectionSort() {
     index = 0;
     for (var i = 0; i < list.length - 1; i++) {
-        for(var j = i + 1; j < list.length; j++) {
+        for (var j = i + 1; j < list.length; j++) {
             selectionSwap(list, i, j);
         }
     }
@@ -171,7 +174,7 @@ function drawSelection(arr, selectedIndex, otherIndex) {
                 ctx.fillStyle = 'red';
             else if (i == otherIndex)
                 ctx.fillStyle = 'blue';
-            else if(i < selectedIndex) 
+            else if (i < selectedIndex)
                 ctx.fillStyle = 'green';
             else
                 ctx.fillStyle = 'orange';
@@ -183,7 +186,7 @@ function drawSelection(arr, selectedIndex, otherIndex) {
     }
 }
 
-function finish(arr){
+function finish(arr) {
     clearCanvas();
     for (var i = 0; i < arr.length; i++) {
         var x = 10 + 25 * i;
@@ -200,7 +203,53 @@ function finish(arr){
 }
 
 function clearAllTimeout() {
-    for(var i = 0;i < index; i ++) {
+    for (var i = 0; i < index; i++) {
         clearTimeout(i);
+    }
+}
+
+function insertSort() {
+    index = 0;
+    for (var i = 0; i < list.length; i++) {
+        var j = i - 1;
+        var temp = list[i];
+        var ls = copyArray(list);
+        while (j > -1 && temp < list[j]) {
+            list[j + 1] = list[j];
+            drawSwap(ls, i, j);
+            j--;
+        }
+        list[j + 1] = temp;
+    }
+}
+
+function drawSwap(arr, i, j) {
+    var ls = copyArray(arr);
+    setTimeout(function () {
+        drawInsert(ls, i, j);
+    }, index * 100);
+    index++;
+}
+
+function drawInsert(arr, selectedIndex, otherIndex) {
+    clearCanvas();
+    for (var i = 0; i < arr.length; i++) {
+        var x = 10 + 25 * i;
+        var y = arr[i] * 10;
+        if (ctx) {
+            ctx.beginPath();
+            if (i == selectedIndex)
+                ctx.fillStyle = 'red';
+            else if (i == otherIndex)
+                ctx.fillStyle = 'blue';
+            else if (i < selectedIndex)
+                ctx.fillStyle = 'green';
+            else
+                ctx.fillStyle = 'orange';
+            ctx.fillRect(x, 480 - y - 10, 18, y);
+            var width = ctx.measureText(arr[i].toString()).width;
+            ctx.fillText(arr[i].toString(), x + (15 - width) / 2, 480);
+            ctx.closePath();
+        }
     }
 }
